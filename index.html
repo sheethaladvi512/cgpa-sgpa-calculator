@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GradeFlow — SGPA & CGPA Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="noise-overlay"></div>
+
+  <header>
+    <div class="logo">Grade<span>Flow</span></div>
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="sgpa">SGPA</button>
+      <button class="tab-btn" data-tab="cgpa">CGPA</button>
+    </nav>
+    <div class="theme-toggle" id="themeToggle" title="Toggle theme">
+      <span class="theme-icon">◑</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ─── SGPA PANEL ─── -->
+    <section id="tab-sgpa" class="tab-panel active">
+      <div class="panel-header">
+        <h1>Semester GPA <span class="accent">Calculator</span></h1>
+        <p class="subtitle">Add your subjects, enter credits & grades — get instant results.</p>
+      </div>
+
+      <div class="grading-system-bar">
+        <label>Grading System</label>
+        <div class="radio-group">
+          <label class="radio-pill"><input type="radio" name="scale" value="10" checked/> 10-Point</label>
+          <label class="radio-pill"><input type="radio" name="scale" value="4"/> 4-Point</label>
+          <label class="radio-pill"><input type="radio" name="scale" value="percentage"/> Percentage</label>
+        </div>
+      </div>
+
+      <div class="subjects-wrapper">
+        <div class="subjects-header row-grid">
+          <span>Subject Name</span>
+          <span>Credits</span>
+          <span>Grade / Marks</span>
+          <span>Points</span>
+          <span></span>
+        </div>
+        <div id="subjectList"></div>
+        <button class="add-btn" id="addSubject">
+          <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Add Subject
+        </button>
+      </div>
+
+      <div class="result-card" id="sgpaResult">
+        <div class="result-inner">
+          <div class="result-label">SGPA</div>
+          <div class="result-value" id="sgpaValue">—</div>
+          <div class="result-sub" id="sgpaGradeLetter"></div>
+        </div>
+        <div class="result-breakdown" id="sgpaBreakdown"></div>
+      </div>
+
+      <div class="action-row">
+        <button class="secondary-btn" id="clearSgpa">Clear All</button>
+        <button class="primary-btn" id="saveSemester">Save to CGPA</button>
+        <button class="secondary-btn" id="exportSgpa">Export</button>
+      </div>
+    </section>
+
+    <!-- ─── CGPA PANEL ─── -->
+    <section id="tab-cgpa" class="tab-panel">
+      <div class="panel-header">
+        <h1>Cumulative GPA <span class="accent">Tracker</span></h1>
+        <p class="subtitle">Track your semester GPAs and see your cumulative performance.</p>
+      </div>
+
+      <div class="semesters-wrapper">
+        <div class="semesters-header row-grid-cgpa">
+          <span>Semester</span>
+          <span>SGPA</span>
+          <span>Credits</span>
+          <span>Weighted</span>
+          <span></span>
+        </div>
+        <div id="semesterList"></div>
+        <button class="add-btn" id="addSemesterManual">
+          <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Add Semester
+        </button>
+      </div>
+
+      <div class="result-card cgpa-card" id="cgpaResult">
+        <div class="result-inner">
+          <div class="result-label">CGPA</div>
+          <div class="result-value" id="cgpaValue">—</div>
+          <div class="result-sub" id="cgpaGradeLetter"></div>
+        </div>
+        <div class="cgpa-stats" id="cgpaStats"></div>
+      </div>
+
+      <canvas id="cgpaChart" height="160"></canvas>
+
+      <div class="action-row">
+        <button class="secondary-btn" id="clearCgpa">Clear All</button>
+        <button class="secondary-btn" id="exportCgpa">Export</button>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
